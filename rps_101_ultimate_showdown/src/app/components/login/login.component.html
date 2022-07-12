@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div>
+    <div class="card-body">
+        <form action="">
+
+            <div>
+                <label for="inputUsername" class="form-lable">Username</label>
+                <input [(ngModel)]="username" type="text" name="username" placeholder="enter your username" class="form-control" >
+            </div>
+            <div>
+                <label for="inputUsername" class="form-lable">Username</label>
+                <input [(ngModel)]="password" type="password" name="password" placeholder="enter your password" class="form-control" >
+            </div>
+            <div>
+                <!-- hide the login button while reuqests is laoding-->
+                <div class="btn-secondary btn" *ngIf="!isLoading" (click)="login()">log in</div>
+            </div>
+            <h2>
+                {{loginErrorMsg}}
+            </h2>
+        </form>
+    </div>
+</div>
