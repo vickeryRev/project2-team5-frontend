@@ -1,4 +1,7 @@
 <div>
+    <div>
+        <h2 class="card-header text-center">Login</h2>
+    </div>
     <div class="card-body">
         <form action="">
 
@@ -12,7 +15,7 @@
             </div>
             <div>
                 <!-- hide the login button while reuqests is laoding-->
-                <div class="btn-secondary btn" *ngIf="!isLoading" (click)="login()">log in</div>
+                <div class="btn-primary btn" *ngIf="!isLoading" (click)="login()">log in</div>
             </div>
             <h2>
                 {{loginErrorMsg}}

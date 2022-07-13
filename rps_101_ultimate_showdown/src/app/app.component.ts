@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rps_101_ultimate_showdown';
+  public isLoggedIn: boolean = false;
+  username: string ="";
+
+  updateUserData(username: string): void {
+    this.username = username;
+  }
+
+  //logout 
+  signOut(): void {
+    window.location.reload();
+  }
 }

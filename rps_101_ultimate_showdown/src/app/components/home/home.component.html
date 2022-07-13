@@ -1,0 +1,16 @@
+<div class="container" >
+    <div class="card border-0 my-auot w-100">
+        <div class="shadow-lg">
+            <div class="text-center">
+                <h1 class="card-header text-center">Rolodex API</h1>
+                <!--show loging componet here-->
+                <app-login *ngIf="!isNewUser" ></app-login>
+                <div class="btn-secondary btn" *ngIf="!isNewUser" (click)="changeDisplay()">New User?</div>
+                
+                <app-register *ngIf="isNewUser" ></app-register>
+                <div class="btn-secondary btn" *ngIf="isNewUser" (click)="changeDisplay()">Already have an account?</div>
+                
+            </div>
+        </div>
+    </div>
+</div>
