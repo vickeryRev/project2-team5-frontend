@@ -1,0 +1,43 @@
+<div>
+
+    <div>
+        <h2 class="card-header text-center">PLAY THE GAME!</h2>
+
+        <div class="card-body">
+
+            <form>
+            <div class="object1">
+                <label for="inputObject1" class="form-label">Object1</label>
+                <select [(ngModel)]="object1" name="objectOne" id="inputObject1" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value=1>tank</option>
+                    <option value=1>nuke</option>
+                    <option value=2>air</option>
+
+                  </select>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" (click)="playMatch()">Play Match</button>
+            </div>
+
+            <div *ngIf="clientMessage.message.length > 0" class="alert alert-secondary" role="alert">
+                {{clientMessage.message}}
+              </div>
+
+              <div *ngIf="clientMessage.message.length > 0" style="width: 100%; display: table;">
+                <div style="display: table-row">
+                    <div style="width: 600px; display: table-cell;"> <img src={{gameImage.playerUrl}} alt="Player Object"> </div>
+                   <div style="display: table-cell;"> <img src= {{vsImage}} alt="VS"> </div> 
+                    <div style="display: table-cell;"> <img src= {{gameImage.compObjectUrl}} alt="Computer Object"> </div>
+                </div>
+            </div>
+        </form>
+
+
+
+        </div>
+
+
+    </div>
+</div>
