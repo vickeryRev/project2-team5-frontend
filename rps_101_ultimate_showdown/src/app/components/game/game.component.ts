@@ -28,7 +28,7 @@ export class GameComponent {
 
   playMatch(){
 
-    const compObject = GAMEOBJECTS[this.randomIntFromInterval(0,2)];
+    const compObject = GAMEOBJECTS[this.randomIntFromInterval(0,100)];
     const playerObject = GAMEOBJECTS[this.object1];
     console.log("Player object is " + playerObject.name);
     console.log("Computer Object is: " + compObject.name);
