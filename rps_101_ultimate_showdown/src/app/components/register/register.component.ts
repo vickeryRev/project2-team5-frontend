@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   title = "register user";
-  user: User = new User(0,'','','','','');
+  user: User = new User(0,'','','','','',[]);
   clientMessage: ClientMessage = new ClientMessage("");
   constructor(private UserService: UserService) { }
 

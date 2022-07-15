@@ -14,7 +14,9 @@ export class LoginComponent {
   loginErrorMsg: string = "";
   isLoading: boolean = false;
 
-  constructor(private AuthService: AuthService, private AppComponent: AppComponent) { }
+  constructor(private AuthService: AuthService, private AppComponent: AppComponent) {
+    this.login();
+   }
 
   //pass username and password for template, and call auth service on the back end
   

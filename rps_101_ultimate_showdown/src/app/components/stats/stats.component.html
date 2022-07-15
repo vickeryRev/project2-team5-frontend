@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="card-body">
+        <div class="card-title"><h3>{{username}} statistics</h3></div>
+        <div class="p-3 mb-2 bg-white text-black">
+            <p>
+                GAMESPLAYED : {{gamesPlayed}}
+            </p>
+            <p>
+                WINS: {{gamesWon}}
+            </p>
+            <p>
+                WINRATIO: {{winRatio}}%
+            </p>
+        </div>
+
+    </div>
+    <div class="card-body" *ngFor="let u of user.throwThings">
+        <div class="card-tile"> {{u.name}} </div>
+        <p>gamesPlayed : {{u.uses}}</p>
+        <p>wins : {{u.wins}}</p>
+        
+    </div>
+</div>
