@@ -34,8 +34,7 @@ export class throwThings{
   id: number;
   uses: number;
   wins: number;
-  ratio: number;
-  image: string;
+  
   name: string;
 
 
@@ -45,15 +44,13 @@ export class throwThings{
     uses: number, 
     wins: number, 
     name: string,
-    ratio: number, 
-    image: string 
+    
     
 ) {
     this.id = id
     this.uses = uses
     this.wins = wins
-    this.ratio = 0
-    this.image = ""
+    
     this.name = name
   }
   
