@@ -19,7 +19,15 @@ export class UserService {
     return this.http.post<User>(`${this.userUrl}/add`,user, this.httpOptions)
     .pipe(catchError(this.handleError));
   }
-  //custom services
+
+  findUserByUserName(userName: string): Observable<User>{
+    //:5000/find.${userName}
+    return this.http.get<User>(`${this.userUrl}/find/${userName}`, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //custom methods
 
   private handleError(httpError: HttpErrorResponse){
     if(httpError.error instanceof ErrorEvent){

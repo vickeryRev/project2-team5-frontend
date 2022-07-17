@@ -8,10 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'rps_101_ultimate_showdown';
   public isLoggedIn: boolean = false;
-  username: string ="";
+  public username: string ="tim";
 
   updateUserData(username: string): void {
     this.username = username;
+  }
+
+  getUsername(): string{
+    return this.username;
   }
 
   //logout 
