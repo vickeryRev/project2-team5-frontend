@@ -34,20 +34,24 @@ export class LoginComponent {
     this.AuthService.login(this.username, this.password)
     .subscribe(
       (response) => {
+        console.log(response);
         this.isLoading = false;
 
         //build token
-        const token = response.headers.get('rps-ultimate-showdown-token')
+        
+        const token = response.headers.get("rps-ultimate-showdown-token")
         //save token to session on browser
         sessionStorage.setItem("token", token)
-
+        
         this.AppComponent.isLoggedIn = true;
         this.AppComponent.updateUserData(response.body.username)
+        
+       console.log("hi")
       },
       //failed login
       () => {
         this.isLoading = false;
-        this.loginErrorMsg = ""
+        this.loginErrorMsg = "login failed"
       }
     );
     this.username ="";
