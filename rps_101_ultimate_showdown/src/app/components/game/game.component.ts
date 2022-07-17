@@ -15,8 +15,8 @@ export class GameComponent {
   object1 = -1;
   object2 = "";
   clientMessage: ClientMessage = new ClientMessage('');
-  gameImage: GameImages = new GameImages('','');
-  vsImage = "assets/vs.png";
+  gameImage: GameImages = new GameImages('','','','','');
+  vsImage = "assets/vs.bmp";
 
   title = "It's the Game!"
   
@@ -37,6 +37,8 @@ export class GameComponent {
 
     this.gameImage.compObjectUrl = `${compObject.url}`;
     this.gameImage.playerUrl = `${playerObject.url}`;
+    this.gameImage.computerName = `${compObject.name}`;
+    this.gameImage.playerName =`${playerObject.name}`;
     
 
   this.gameService.getMatch(playerObject.name, compObject.name)
