@@ -4,140 +4,165 @@
         <h2 class="card-header text-center">PLAY THE GAME!</h2>
 
         <div class="card-body">
-
+            <h4 class="text-center">Pick Your Object!</h4>
             <form>
             <div class="object1">
-                <label for="inputObject1" class="form-label">Object1</label>
+                <label for="inputObject1" class="form-label"></label>
                 <select [(ngModel)]="object1" name="objectOne" id="inputObject1" class="form-select">
                     <option selected>Choose...</option>
-                    <option value=0>air</option>
-                    <option value=1>airplane</option>
-                    <option value=2>alien</option>
-                    <option value=3>axe</option>
-                    <option value=4>baby</option>
-                    <option value=5>beer</option>
-                    <option value=6>bicycle</option>
-                    <option value=7>bird</option>
-                    <option value=8>blood</option>
-                    <option value=9>book</option>
-                    <option value=1>bowl</option>
-                    <option value=11>brain</option>
-                    <option value=12>butter</option>
-                    <option value=13>cage</option>
-                    <option value=14>camera</option>
-                    <option value=15>car</option>
-                    <option value=16>castle</option>
-                    <option value=17>cat</option>
-                    <option value=18>chain</option>
-                    <option value=19>chainsaw</option>
-                    <option value=20>church</option>
-                    <option value=21>cloud</option>
-                    <option value=22>cockroach</option>
-                    <option value=23>community</option>
-                    <option value=24>computer</option>
-                    <option value=25>cross</option>
-                    <option value=26>cup</option>
-                    <option value=27>death</option>
-                    <option value=28>devil</option>
-                    <option value=29>diamon</option>
-                    <option value=30>dragon</option>
-                    <option value=31>duck</option>
-                    <option value=32>dynamite</option>
-                    <option value=33>electricity</option>
-                    <option value=34>fence</option>
-                    <option value=35>film</option>
-                    <option value=36>fire</option>
-                    <option value=37>fish</option>
-                    <option value=38>gold</option>
-                    <option value=39>grass</option>
-                    <option value=40>guitar</option>
-                    <option value=41>gun</option>
-                    <option value=42>heart</option>
-                    <option value=43>helicopter</option>
-                    <option value=44>home</option>
-                    <option value=45>king</option>
-                    <option value=46>laser</option>
-                    <option value=47>law</option>
-                    <option value=48>lightning</option>
-                    <option value=49>man</option>
-                    <option value=50>math</option>
-                    <option value=51>medusa</option>
-                    <option value=52>money</option>
-                    <option value=53>monkey</option>
-                    <option value=54>moon</option>
-                    <option value=55>mountain</option>
-                    <option value=56>noise</option>
-                    <option value=57>nuke</option>
-                    <option value=58>paper</option>
-                    <option value=59>peace</option>
-                    <option value=60>pit</option>
-                    <option value=61>planet</option>
-                    <option value=62>platimum</option>
-                    <option value=63>poison</option>
-                    <option value=64>police</option>
-                    <option value=65>porcupine</option>
-                    <option value=66>power</option>
-                    <option value=67>prayer</option>
-                    <option value=68>prince</option>
-                    <option value=69>princess</option>
-                    <option value=70>queen</option>
-                    <option value=71>quicksand</option>
-                    <option value=72>rain</option>
-                    <option value=73>rainbow</option>
-                    <option value=74>robot</option>
-                    <option value=75>rock</option>
-                    <option value=76>satan</option>
-                    <option value=77>school</option>
-                    <option value=78>scissors</option>
-                    <option value=79>sky</option>
-                    <option value=80>snake</option>
-                    <option value=81>spider</option>
-                    <option value=82>sponge</option>
-                    <option value=83>sun</option>
-                    <option value=84>sword</option>
-                    <option value=85>t.v.</option>
-                    <option value=86>tank</option>
-                    <option value=87>toilet</option>
-                    <option value=88>tornado</option>
-                    <option value=89>train</option>
-                    <option value=90>tree</option>
-                    <option value=91>turnip</option>
-                    <option value=92>u.f.o.</option>
-                    <option value=93>vampire</option>
-                    <option value=94>video game</option>
-                    <option value=95>vulture</option>
-                    <option value=96>wall</option>
-                    <option value=97>water</option>
-                    <option value=98>whip</option>
-                    <option value=99>wolf</option>
-                    <option value=100>woman</option>
+                    <option value=0>Air</option>
+                    <option value=1>Airplane</option>
+                    <option value=2>Alien</option>
+                    <option value=3>Axe</option>
+                    <option value=4>Baby</option>
+                    <option value=5>Beer</option>
+                    <option value=6>Bicycle</option>
+                    <option value=7>Bird</option>
+                    <option value=8>Blood</option>
+                    <option value=9>Book</option>
+                    <option value=1>Bowl</option>
+                    <option value=11>Brain</option>
+                    <option value=12>Butter</option>
+                    <option value=13>Cage</option>
+                    <option value=14>Camera</option>
+                    <option value=15>Car</option>
+                    <option value=16>Castle</option>
+                    <option value=17>Cat</option>
+                    <option value=18>Chain</option>
+                    <option value=19>Chainsaw</option>
+                    <option value=20>Church</option>
+                    <option value=21>Cloud</option>
+                    <option value=22>Cockroach</option>
+                    <option value=23>Community</option>
+                    <option value=24>Computer</option>
+                    <option value=25>Cross</option>
+                    <option value=26>Cup</option>
+                    <option value=27>Death</option>
+                    <option value=28>Devil</option>
+                    <option value=29>Diamond</option>
+                    <option value=30>Dragon</option>
+                    <option value=31>Duck</option>
+                    <option value=32>Dynamite</option>
+                    <option value=33>Electricity</option>
+                    <option value=34>Fence</option>
+                    <option value=35>Film</option>
+                    <option value=36>Fire</option>
+                    <option value=37>Fish</option>
+                    <option value=38>Gold</option>
+                    <option value=39>Grass</option>
+                    <option value=40>Guitar</option>
+                    <option value=41>Gun</option>
+                    <option value=42>Heart</option>
+                    <option value=43>Helicopter</option>
+                    <option value=44>Home</option>
+                    <option value=45>King</option>
+                    <option value=46>Laser</option>
+                    <option value=47>Law</option>
+                    <option value=48>Lightning</option>
+                    <option value=49>Man</option>
+                    <option value=50>Math</option>
+                    <option value=51>Medusa</option>
+                    <option value=52>Money</option>
+                    <option value=53>Monkey</option>
+                    <option value=54>Moon</option>
+                    <option value=55>Mountain</option>
+                    <option value=56>Noise</option>
+                    <option value=57>Nuke</option>
+                    <option value=58>Paper</option>
+                    <option value=59>Peace</option>
+                    <option value=60>Pit</option>
+                    <option value=61>Planet</option>
+                    <option value=62>Platimum</option>
+                    <option value=63>Poison</option>
+                    <option value=64>Police</option>
+                    <option value=65>Porcupine</option>
+                    <option value=66>Power</option>
+                    <option value=67>Prayer</option>
+                    <option value=68>Prince</option>
+                    <option value=69>Princess</option>
+                    <option value=70>Queen</option>
+                    <option value=71>Quicksand</option>
+                    <option value=72>Rain</option>
+                    <option value=73>Rainbow</option>
+                    <option value=74>Robot</option>
+                    <option value=75>Rock</option>
+                    <option value=76>Satan</option>
+                    <option value=77>School</option>
+                    <option value=78>Scissors</option>
+                    <option value=79>Sky</option>
+                    <option value=80>Snake</option>
+                    <option value=81>Spider</option>
+                    <option value=82>Sponge</option>
+                    <option value=83>Sun</option>
+                    <option value=84>Sword</option>
+                    <option value=85>T.v.</option>
+                    <option value=86>Tank</option>
+                    <option value=87>Toilet</option>
+                    <option value=88>Tornado</option>
+                    <option value=89>Train</option>
+                    <option value=90>Tree</option>
+                    <option value=91>Turnip</option>
+                    <option value=92>U.f.o.</option>
+                    <option value=93>Vampire</option>
+                    <option value=94>Video game</option>
+                    <option value=95>Vulture</option>
+                    <option value=96>Wall</option>
+                    <option value=97>Water</option>
+                    <option value=98>Whip</option>
+                    <option value=99>Wolf</option>
+                    <option value=100>Woman</option>
                     
                     
 
                   </select>
             </div>
 
-            <div class="col-12">
+            <br>
+
+            <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary" (click)="playMatch()">Play Match</button>
             </div>
 
-            <div *ngIf="clientMessage.message.length > 0" class="alert alert-secondary" role="alert">
-                {{clientMessage.message}}
+            <br>
+
+            <div class="clientmessage text-center" *ngIf="clientMessage.message.length > 0" class="alert alert-secondary" role="alert">
+               <h4> {{clientMessage.message}}</h4>
               </div>
 
+            <br>
+
               <div *ngIf="clientMessage.message.length > 0" style="width: 100%; display: table;">
-                <div style="display: table-row">
-                    <div style="width: 600px; display: table-cell;"> <img src={{gameImage.playerUrl}} alt="Player Object"> </div>
-                   <div style="display: table-cell;"> <img src= {{vsImage}} alt="VS"> </div> 
-                    <div style="display: table-cell;"> <img src= {{gameImage.compObjectUrl}} alt="Computer Object"> </div>
+                <div id="gametable" style="display: table-row">
+
+                    <div style="width: 400px; display: table-cell; text-align: center;"> <img src={{gameImage.playerUrl}} alt="Player Object"> 
+                    <h3>{{gameImage.playerName}}</h3>
+                    </div>
+
+                   <div style="display: table-cell; text-align: center; "> <img src= {{vsImage}} alt="VS"> </div> 
+
+                    <div style="display: table-cell; text-align: center;"> <img src= {{gameImage.compObjectUrl}} alt="Computer Object">
+                    <h3>{{gameImage.computerName}}</h3> 
+                    </div>
+
                 </div>
+ 
+
+                
             </div>
         </form>
 
-
+ 
 
         </div>
 
 
+
     </div>
+
+ 
+
 </div>
+
+<div class="userpagebtn text-center">
+    <a href="default.asp" target="_blank">Back To User Page</a>
+    </div>
