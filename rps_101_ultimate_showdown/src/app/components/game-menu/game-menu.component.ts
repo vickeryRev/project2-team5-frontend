@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-game-menu',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private AppComponent: AppComponent) { }
 
   ngOnInit(): void {
   }
 
+  flipIsLanded(){
+    this.AppComponent.isLanded = false;
+  }
 }

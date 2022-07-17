@@ -2,8 +2,8 @@
   <div class="card border-0 my-auto w-100">
     <div class="shadow-lg">
       <app-home *ngIf="!isLoggedIn"></app-home>
-      <app-userpage></app-userpage>
-      <app-game></app-game>
+      <app-userpage *ngIf="isLanded" ></app-userpage>
+      <router-outlet></router-outlet>
       <button class="btn-warnning btn" (click)="signOut()">Logout</button>
     </div>
   

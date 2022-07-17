@@ -15,7 +15,7 @@ export class LoginComponent {
   isLoading: boolean = false;
 
   constructor(private AuthService: AuthService, private AppComponent: AppComponent) {
-    this.login();
+    //this.login();
    }
 
   //pass username and password for template, and call auth service on the back end
