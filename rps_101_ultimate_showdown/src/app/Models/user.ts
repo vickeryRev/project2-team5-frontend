@@ -49,9 +49,10 @@ user: number;
     this.id = id
     this.uses = uses
     this.wins = wins
-    this.throwEnum = throwEnum;
+    this.throwEnum = throwEnum
     this.user = user
   }
+  
 
 
 
