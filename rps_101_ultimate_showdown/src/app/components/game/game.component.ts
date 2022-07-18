@@ -22,7 +22,7 @@ export class GameComponent {
   clientMessage: ClientMessage = new ClientMessage('');
   gameImage: GameImages = new GameImages('','','','','');
   vsImage = "assets/vs.bmp";
-
+  winFlag: string = "";
   title = "It's the Game!"
   
   constructor(private gameService : GameService,private UserService: UserService, 
@@ -34,10 +34,10 @@ export class GameComponent {
     this.UserService.findUserByUserName(this.AppComponent.getUsername())
     .subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         this.user = data;
         this.clientMessage.message="";
-        console.log(this.user.username + '1');
+        //console.log(this.user.username + '1');
       },
       ()=> this.clientMessage.message= `User not logged in`
 
@@ -52,13 +52,13 @@ export class GameComponent {
     this.findUser();
     const compObject = GAMEOBJECTS[this.randomIntFromInterval(0,100)];
     const playerObject = GAMEOBJECTS[this.object1];
-    console.log("Player object is " + playerObject.name);
-    console.log("Computer Object is: " + compObject.name);
+    //console.log("Player object is " + playerObject.name);
+   // console.log("Computer Object is: " + compObject.name);
     
 
 
-    console.log(this.user.username + '2');
-    console.log(this.user.throwUsage[0]);
+    //console.log(this.user.username + '2');
+    //console.log(this.user.throwUsage[0]);
    
 
     this.gameImage.compObjectUrl = `${compObject.url}`;
@@ -69,18 +69,56 @@ export class GameComponent {
 
   this.gameService.getMatch(playerObject.name, compObject.name)
   .subscribe(
-    data => {if(data.winner.toLowerCase()==playerObject.name){this.clientMessage.message = `YOU WIN! ${data.winner} ${data.outcome} ${data.loser}`}
-              else if(data.winner.toLowerCase()==compObject.name){
+    data => {if(data.winner.toLowerCase()==playerObject.name){
+              this.clientMessage.message = `YOU WIN! ${data.winner} ${data.outcome} ${data.loser}`
+              this.winFlag = "user";
+            } else if(data.winner.toLowerCase()==compObject.name){
                 this.clientMessage.message = `YOU LOSE! ${data.winner} ${data.outcome} ${data.loser}`
-                
+                this.winFlag = "comp";
               }else{
                 this.clientMessage.message = `DRAW!`
+                this.winFlag = "noOne";
               }}, 
     error => this.clientMessage.message = `Something went wrong.  Error ${error}`
   )
+  let itemExist = this.indexOf2dArray(this.user.throwUsage , playerObject.name);
+  //console.log(itemExist);
+  
+  if(itemExist === -1){
+    let newObj : throwUsage;
+    let newPk = new pk(this.user.id, playerObject.name);
+    if(this.winFlag === "user"){
+    let newObj = new throwUsage(newPk,1,1);
+    this.user.throwUsage.push(newObj);
+    }
+    else{
+      newObj = new throwUsage(newPk, 1, 0);
+      this.user.throwUsage.push(newObj);
+    }
+    
+  }else{
+    this.user.throwUsage[itemExist].uses ++;
+    if(this.winFlag === "user"){
+      this.user.throwUsage[itemExist].wins ++;
+    }
+  } 
+  this.UserService.updateUser(this.user);
+  
 
-
+console.log(this.user)
 
 }
 
+
+indexOf2dArray(array2d: throwUsage[], itemtofind: any) {
+    
+  for(let i: number = 0; i < array2d.length; i++){
+    if(array2d[i].pk.name === itemtofind){
+      return i;
+    }
+  }
+  return -1;
+
+
+}
 }
