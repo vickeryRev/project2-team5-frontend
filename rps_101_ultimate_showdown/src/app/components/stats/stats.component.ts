@@ -3,7 +3,7 @@ import { GAMEOBJECTS } from './../../Models/list-of-game-obj';
 import { ClientMessage } from './../../Models/client-message';
 import { AppComponent } from './../../app.component';
 import { UserService } from './../../services/user.service';
-import { User, throwUsage, pk, expandedThrow } from './../../Models/user';
+import { User, throwUsage, expandedThrow } from './../../Models/user';
 import { Component, Input, OnInit } from '@angular/core';
 import { GameObject } from 'src/app/Models/game-object';
 
@@ -25,9 +25,9 @@ export class StatsComponent implements OnInit {
   //throwThings2 = new throwThings(3,100,80,'scissors');
   ClientMessage: ClientMessage = new ClientMessage("");
 
-  pk1 = new pk(1,"rock");
+ // pk1 = new pk(1,"rock");
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
-    this.user.throwUsage.push(new throwUsage(this.pk1 ,25,20,));
+    this.user.throwUsage.push(new throwUsage(1,30,25,'',20,));
     
     //this.user.throwThings.push(new throwThings(2,50,20,'paper'));
     //this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
@@ -73,9 +73,9 @@ export class StatsComponent implements OnInit {
     for( let i :number = 0; i < this.user.throwUsage.length; i ++){
      
       let ratio = this.calcWinRatio(this.user.throwUsage[i].uses,this.user.throwUsage[i].wins)
-      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwUsage[i].pk.name);
+      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwUsage[i].throwEnum);
       
-      let temp: expandedThrow = new expandedThrow(this.user.throwUsage[i].pk.name,this.user.throwUsage[i].uses,this.user.throwUsage[i].wins,
+      let temp: expandedThrow = new expandedThrow(this.user.throwUsage[i].throwEnum,this.user.throwUsage[i].uses,this.user.throwUsage[i].wins,
       ratio, GAMEOBJECTS[index].url);
     }
   }
