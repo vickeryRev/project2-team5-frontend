@@ -10,7 +10,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class UserService {
   userUrl: string = url+ `/users`;
   httpOptions = {
-    headers: new HttpHeaders({"Content-Type" : "application/json"})
+    headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
   constructor(private http: HttpClient) { }
 

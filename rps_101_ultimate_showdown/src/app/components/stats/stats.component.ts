@@ -27,10 +27,10 @@ export class StatsComponent implements OnInit {
 
   
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
-    this.user.throwThings.push(new throwThings(1,25,20,'rock',0,""));
-    this.user.throwThings.push(new throwThings(2,50,20,'paper',0,""));
-    this.user.throwThings.push(new throwThings(3,100,20,'scissors',0,""));
-    this.fillOutData();
+    this.user.throwThings.push(new throwThings(1,25,20,'rock'));
+    this.user.throwThings.push(new throwThings(2,50,20,'paper'));
+    this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
+    //this.fillOutData();
     this.setusername();
     this.sortThrowThings();
     this.calcOveralls();
@@ -65,14 +65,14 @@ export class StatsComponent implements OnInit {
     
   }
 
-  fillOutData(){
+  /*fillOutData(){
     for( let i :number = 0; i < this.user.throwThings.length; i ++){
       this.user.throwThings[i].ratio = this.calcWinRatio(this.user.throwThings[i].uses,this.user.throwThings[i].wins)
       let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].name);
       this.user.throwThings[i].image = GAMEOBJECTS[index].url;
     }
   }
-
+*/
   indexOf2dArray(array2d: GameObject[], itemtofind: any) {
     
     for(let i: number = 0; i < array2d.length; i++){
