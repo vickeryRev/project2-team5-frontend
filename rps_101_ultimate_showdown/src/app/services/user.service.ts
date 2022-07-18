@@ -27,6 +27,13 @@ export class UserService {
       catchError(this.handleError)
     )
   }
+
+  updateUser(user:User):Observable<User>{
+    return this.http.post<User>(`${this.userUrl}/add`, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
   //custom methods
 
   private handleError(httpError: HttpErrorResponse){
