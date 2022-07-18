@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'rps_101_ultimate_showdown';
   public isLoggedIn: boolean = false;
   public isLanded: boolean = true;
-  public username: string ="";
+  public username: string = '';
 
   updateUserData(username: string): void {
     this.username = username;

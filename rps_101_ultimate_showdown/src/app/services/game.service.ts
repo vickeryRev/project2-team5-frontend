@@ -11,8 +11,8 @@ export class GameService {
   
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type' : 'application/json'}),
-    headers2 : new HttpHeaders({'Access-Control-Allow-Origin' : '*'})
+    //headers: new HttpHeaders({'Content-Type' : 'application/json'}),
+    //headers2 : new HttpHeaders({'Access-Control-Allow-Origin' : '*'})
   }
 
   constructor(private http: HttpClient) { }
@@ -22,7 +22,7 @@ export class GameService {
   getMatch(objectOne : string, ObjectTwo : string) : Observable<any>{
 
     console.log("get match activated")
-     return this.http.get<any>(`https://rps101.pythonanywhere.com/api/v1/match?object_one=${objectOne}&object_two=${ObjectTwo}`, this.httpOptions)
+     return this.http.get<any>(`https://rps101.pythonanywhere.com/api/v1/match?object_one=${objectOne}&object_two=${ObjectTwo}`)
      .pipe(catchError(this.handleError));
   }
 

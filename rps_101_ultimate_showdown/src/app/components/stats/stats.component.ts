@@ -35,6 +35,7 @@ export class StatsComponent implements OnInit {
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
+    console.log(this.username)
   }
 
   ngOnInit(): void {
