@@ -3,7 +3,7 @@ import { GAMEOBJECTS } from './../../Models/list-of-game-obj';
 import { ClientMessage } from './../../Models/client-message';
 import { AppComponent } from './../../app.component';
 import { UserService } from './../../services/user.service';
-import { User, throwThings } from './../../Models/user';
+import { User, throwUsage, pk, expandedThrow } from './../../Models/user';
 import { Component, Input, OnInit } from '@angular/core';
 import { GameObject } from 'src/app/Models/game-object';
 
@@ -19,40 +19,43 @@ export class StatsComponent implements OnInit {
   gamesWon: number = 0;
   winRatio: number = 0;
   user: User = new User(0,"","","","","", [])
-  
+  data: expandedThrow[] = [];
   //throwThings = new throwThings(1,25,20,'rock');
   //throwThings1 = new throwThings(2,50,20,'paper');
   //throwThings2 = new throwThings(3,100,80,'scissors');
   ClientMessage: ClientMessage = new ClientMessage("");
 
-  
+  pk1 = new pk(1,"rock");
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
-    this.user.throwThings.push(new throwThings(1,25,20,'rock',0,""));
-    this.user.throwThings.push(new throwThings(2,50,20,'paper',0,""));
-    this.user.throwThings.push(new throwThings(3,100,20,'scissors',0,""));
-    this.fillOutData();
+    this.user.throwUsage.push(new throwUsage(this.pk1 ,25,20,));
+    
+    //this.user.throwThings.push(new throwThings(2,50,20,'paper'));
+    //this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
+    //this.fillOutData();
     this.setusername();
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
+    console.log(this.username)
   }
 
   ngOnInit(): void {
   }
 
   sortThrowThings(){
-    if(this.user.throwThings.length != 0){
-      this.user.throwThings.sort((a,b) => ((a.wins / a.uses) > (b.wins/b.uses)) ? 1 : -1);
-      this.user.throwThings.reverse();
+    if(this.user.throwUsage.length != 0){
+      this.user.throwUsage.sort((a,b) => ((a.wins / a.uses) > (b.wins/b.uses)) ? 1 : -1);
+      this.user.throwUsage.reverse();
     }
     else{
       return;
     }
   }
   calcOveralls(){
-    for( let i :number = 0; i < this.user.throwThings.length; i ++){
-      this.gamesPlayed += this.user.throwThings[i].uses;
-      this.gamesWon += this.user.throwThings[i].wins;
+    for( let i :number = 0; i < this.user.throwUsage.length; i ++){
+      this.gamesPlayed += this.user.throwUsage[i].uses;
+      this.gamesWon += this.user.throwUsage[i].wins;
+      
     }
   }
   
@@ -66,10 +69,13 @@ export class StatsComponent implements OnInit {
   }
 
   fillOutData(){
-    for( let i :number = 0; i < this.user.throwThings.length; i ++){
-      this.user.throwThings[i].ratio = this.calcWinRatio(this.user.throwThings[i].uses,this.user.throwThings[i].wins)
-      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].name);
-      this.user.throwThings[i].image = GAMEOBJECTS[index].url;
+    for( let i :number = 0; i < this.user.throwUsage.length; i ++){
+     
+      let ratio = this.calcWinRatio(this.user.throwUsage[i].uses,this.user.throwUsage[i].wins)
+      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwUsage[i].pk.name);
+      
+      let temp: expandedThrow = new expandedThrow(this.user.throwUsage[i].pk.name,this.user.throwUsage[i].uses,this.user.throwUsage[i].wins,
+      ratio, GAMEOBJECTS[index].url);
     }
   }
 

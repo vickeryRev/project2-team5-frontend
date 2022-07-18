@@ -1,5 +1,5 @@
 import { AppComponent } from 'src/app/app.component';
-import { User, throwThings } from './../../Models/user';
+import { User, throwUsage, pk } from './../../Models/user';
 import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
 import { ClientMessage } from 'src/app/Models/client-message';
@@ -58,6 +58,7 @@ export class GameComponent {
 
 
     console.log(this.user.username + '2');
+    console.log(this.user.throwUsage[0]);
    
 
     this.gameImage.compObjectUrl = `${compObject.url}`;

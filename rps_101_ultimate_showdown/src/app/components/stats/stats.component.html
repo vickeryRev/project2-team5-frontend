@@ -14,11 +14,14 @@
         </div>
 
     </div>
-    <div class="card-body" *ngFor="let u of user.throwThings">
+    <div class="card-body" *ngFor="let u of data">
         <div class="card-tile"> {{u.name}} </div>
         <p>gamesPlayed : {{u.uses}}</p>
         <p>wins : {{u.wins}}</p>
-        <p>ratio: {{u.ratio}}% </p>
-        <p><img src= {{u.image}} alt= "{{u.name}}+image"></p>
+        
+        
+            <p>ratio: {{u.ratio}}% </p>
+        <p><img src= {{u.pic}} alt= "{{u.name}}+image"></p>
+        
     </div>
 </div>
