@@ -1,6 +1,6 @@
 import { ClientMessage } from './../../Models/client-message';
 import { UserService } from './../../services/user.service';
-import { User, throwThings, pk } from './../../Models/user';
+import { User, throwUsage, pk } from './../../Models/user';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   title = "register user";
   user: User = new User(0,'','','','','',[]);
   pk: pk = new pk(0,"");
-  throwThings: throwThings = new throwThings(this.pk,0,0);
+  throwThings: throwUsage = new throwUsage(this.pk,0,0);
   clientMessage: ClientMessage = new ClientMessage("");
   constructor(private UserService: UserService) { }
 
