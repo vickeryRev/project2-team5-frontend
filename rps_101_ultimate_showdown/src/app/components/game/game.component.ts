@@ -1,5 +1,5 @@
 import { AppComponent } from 'src/app/app.component';
-import { User, throwUsage, pk } from './../../Models/user';
+import { User, throwUsage} from './../../Models/user';
 import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
 import { ClientMessage } from 'src/app/Models/client-message';
@@ -34,7 +34,7 @@ export class GameComponent {
     this.UserService.findUserByUserName(this.AppComponent.getUsername())
     .subscribe(
       data => {
-        //console.log(data);
+        console.log(data);
         this.user = data;
         this.clientMessage.message="";
         //console.log(this.user.username + '1');
@@ -58,7 +58,7 @@ export class GameComponent {
 
 
     //console.log(this.user.username + '2');
-    //console.log(this.user.throwUsage[0]);
+    console.log(this.user.throwUsage[0]);
    
 
     this.gameImage.compObjectUrl = `${compObject.url}`;
@@ -81,25 +81,30 @@ export class GameComponent {
               }}, 
     error => this.clientMessage.message = `Something went wrong.  Error ${error}`
   )
-  let itemExist = this.indexOf2dArray(this.user.throwUsage , playerObject.name);
-  //console.log(itemExist);
+  console.log(this.user.throwUsage);
+  //console.log(this.user.id);
+ // console.log(playerObject.name.toUpperCase());
+   let itemExist = this.indexOf2dArray(this.user.throwUsage , playerObject.name.toUpperCase());
+   console.log("Win flag: " + this.winFlag);
+  console.log("itemExist:" + itemExist);
   
-  if(itemExist === -1){
-    let newObj : throwUsage;
-    let newPk = new pk(this.user.id, playerObject.name);
-    if(this.winFlag === "user"){
-    let newObj = new throwUsage(newPk,1,1);
-    this.user.throwUsage.push(newObj);
-    }
-    else{
-      newObj = new throwUsage(newPk, 1, 0);
-      this.user.throwUsage.push(newObj);
-    }
+    if(itemExist === -1){
+  //   let newObj : throwUsage;
+  //   if(this.winFlag === "user"){
+  //   let newObj = new throwUsage(?,1,1,playerObject.name.toUpperCase(),this.user.id);
+  //   this.user.throwUsage.push(newObj);
+  //   }
+  //   else{
+  //     newObj = new throwUsage(?, 1, 0, playerObject.name.toUpperCase(),this.user.id);
+  //     this.user.throwUsage.push(newObj);
+  // }
     
   }else{
-    this.user.throwUsage[itemExist].uses ++;
+    console.log(this.user.throwUsage[itemExist].uses)
+    this.user.throwUsage[itemExist].uses =this.user.throwUsage[itemExist].uses ++;
+    console.log(this.user.throwUsage[itemExist].uses)
     if(this.winFlag === "user"){
-      this.user.throwUsage[itemExist].wins ++;
+      this.user.throwUsage[itemExist].wins = this.user.throwUsage[itemExist].wins ++;
     }
   } 
   this.UserService.updateUser(this.user);
@@ -113,8 +118,13 @@ console.log(this.user)
 indexOf2dArray(array2d: throwUsage[], itemtofind: any) {
     
   for(let i: number = 0; i < array2d.length; i++){
-    if(array2d[i].pk.name === itemtofind){
+
+    console.log("array2d[i].throwEnum:" + array2d[i].throwEnum);
+    console.log("array2d[i].userId:" + array2d[i].user);
+    if((array2d[i].throwEnum === itemtofind)&&(array2d[i].user == this.user.id)){
+
       return i;
+      
     }
   }
   return -1;
