@@ -18,6 +18,6 @@ export class AuthService {
     //set up body of response
     const payload = {username, password}
 
-    return this.http.post<any>(this.loginUrl, payload, this.httpOptions)
+    return this.http.post<any>(this.loginUrl, payload,  { observe: 'response' })
   }
 }

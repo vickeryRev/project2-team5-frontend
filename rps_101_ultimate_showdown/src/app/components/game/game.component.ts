@@ -1,3 +1,4 @@
+import { User } from './../../Models/user';
 import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
 import { ClientMessage } from 'src/app/Models/client-message';
@@ -33,6 +34,7 @@ export class GameComponent {
     console.log("Player object is " + playerObject.name);
     console.log("Computer Object is: " + compObject.name);
 
+    
 
 
     this.gameImage.compObjectUrl = `${compObject.url}`;
