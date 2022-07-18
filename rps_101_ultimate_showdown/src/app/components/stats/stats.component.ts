@@ -3,7 +3,7 @@ import { GAMEOBJECTS } from './../../Models/list-of-game-obj';
 import { ClientMessage } from './../../Models/client-message';
 import { AppComponent } from './../../app.component';
 import { UserService } from './../../services/user.service';
-import { User, throwThings } from './../../Models/user';
+import { User, throwThings, pk, expandedThrow } from './../../Models/user';
 import { Component, Input, OnInit } from '@angular/core';
 import { GameObject } from 'src/app/Models/game-object';
 
@@ -19,22 +19,24 @@ export class StatsComponent implements OnInit {
   gamesWon: number = 0;
   winRatio: number = 0;
   user: User = new User(0,"","","","","", [])
-  
+  data: expandedThrow[] = [];
   //throwThings = new throwThings(1,25,20,'rock');
   //throwThings1 = new throwThings(2,50,20,'paper');
   //throwThings2 = new throwThings(3,100,80,'scissors');
   ClientMessage: ClientMessage = new ClientMessage("");
 
-  
+  pk1 = new pk(1,"air");
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
-    this.user.throwThings.push(new throwThings(1,25,20,'rock'));
-    this.user.throwThings.push(new throwThings(2,50,20,'paper'));
-    this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
+    this.user.throwThings.push(new throwThings(this.pk1 ,25,20,));
+    
+    //this.user.throwThings.push(new throwThings(2,50,20,'paper'));
+    //this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
     //this.fillOutData();
     this.setusername();
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
+    this.fillOutData();
     console.log(this.username)
   }
 
@@ -54,6 +56,7 @@ export class StatsComponent implements OnInit {
     for( let i :number = 0; i < this.user.throwThings.length; i ++){
       this.gamesPlayed += this.user.throwThings[i].uses;
       this.gamesWon += this.user.throwThings[i].wins;
+      
     }
   }
   
@@ -66,14 +69,19 @@ export class StatsComponent implements OnInit {
     
   }
 
-  /*fillOutData(){
+  fillOutData(){
     for( let i :number = 0; i < this.user.throwThings.length; i ++){
-      this.user.throwThings[i].ratio = this.calcWinRatio(this.user.throwThings[i].uses,this.user.throwThings[i].wins)
-      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].name);
-      this.user.throwThings[i].image = GAMEOBJECTS[index].url;
+     
+      let ratio = this.calcWinRatio(this.user.throwThings[i].uses,this.user.throwThings[i].wins)
+      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].pk.name.toLowerCase());
+      console.log(index)
+      let temp: expandedThrow = new expandedThrow(this.user.throwThings[i].pk.name,this.user.throwThings[i].uses,this.user.throwThings[i].wins,
+      ratio, GAMEOBJECTS[index].url);
+      console.log(GAMEOBJECTS[index].url)
+      this.data.push(temp);
     }
   }
-*/
+
   indexOf2dArray(array2d: GameObject[], itemtofind: any) {
     
     for(let i: number = 0; i < array2d.length; i++){
@@ -82,12 +90,13 @@ export class StatsComponent implements OnInit {
       }
     }
     return -1;
-  //return  array2d.indexOf(array2d.find(array2d => array2d.includes(itemtofind))) 
+  
 }
 
   setusername(){
     this.username = this.AppComponent.getUsername();
   }
+  
   findUser(){
     this.UserService.findUserByUserName(this.username)
     .subscribe(

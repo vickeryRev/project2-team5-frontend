@@ -31,28 +31,52 @@ export class User {
 }
 
 export class throwThings{
-  id: number;
+  pk : pk;
   uses: number;
   wins: number;
+
+  constructor(pk: pk, uses: number, wins: number) {
+    this.pk = pk
+    this.uses = uses
+    this.wins = wins
+  }
+ 
   
+
+}
+
+export class pk{
+  id: number;
   name: string;
 
 
-
-  constructor(
-    id: number, 
-    uses: number, 
-    wins: number, 
-    name: string,
-    
-    
-) {
+  constructor(id: number, name: string) {
     this.id = id
-    this.uses = uses
-    this.wins = wins
-    
     this.name = name
   }
-  
+
+}
+
+export class expandedThrow{
+  name: string;
+  uses: number;
+  wins: number;
+  ratio: number;
+  pic: string;
+
+
+  constructor(
+    name: string, 
+    uses: number, 
+    wins: number, 
+    ratio: number, 
+    pic: string
+) {
+    this.name = name;
+    this.uses = uses
+    this.wins = wins
+    this.ratio = ratio
+    this.pic = pic
+  }
 
 }
