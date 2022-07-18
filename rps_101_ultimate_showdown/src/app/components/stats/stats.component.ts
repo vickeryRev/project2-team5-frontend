@@ -36,6 +36,7 @@ export class StatsComponent implements OnInit {
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
+    this.fillOutData();
     console.log(this.username)
   }
 
@@ -87,12 +88,13 @@ export class StatsComponent implements OnInit {
       }
     }
     return -1;
-  //return  array2d.indexOf(array2d.find(array2d => array2d.includes(itemtofind))) 
+  
 }
 
   setusername(){
     this.username = this.AppComponent.getUsername();
   }
+  
   findUser(){
     this.UserService.findUserByUserName(this.username)
     .subscribe(
