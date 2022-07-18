@@ -25,7 +25,7 @@ export class StatsComponent implements OnInit {
   //throwThings2 = new throwThings(3,100,80,'scissors');
   ClientMessage: ClientMessage = new ClientMessage("");
 
-  pk1 = new pk(1,"rock");
+  pk1 = new pk(1,"air");
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
     this.user.throwThings.push(new throwThings(this.pk1 ,25,20,));
     
@@ -36,6 +36,7 @@ export class StatsComponent implements OnInit {
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
+    this.fillOutData();
     console.log(this.username)
   }
 
@@ -72,10 +73,12 @@ export class StatsComponent implements OnInit {
     for( let i :number = 0; i < this.user.throwThings.length; i ++){
      
       let ratio = this.calcWinRatio(this.user.throwThings[i].uses,this.user.throwThings[i].wins)
-      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].pk.name);
-      
+      let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwThings[i].pk.name.toLowerCase());
+      console.log(index)
       let temp: expandedThrow = new expandedThrow(this.user.throwThings[i].pk.name,this.user.throwThings[i].uses,this.user.throwThings[i].wins,
       ratio, GAMEOBJECTS[index].url);
+      console.log(GAMEOBJECTS[index].url)
+      this.data.push(temp);
     }
   }
 
@@ -87,12 +90,13 @@ export class StatsComponent implements OnInit {
       }
     }
     return -1;
-  //return  array2d.indexOf(array2d.find(array2d => array2d.includes(itemtofind))) 
+  
 }
 
   setusername(){
     this.username = this.AppComponent.getUsername();
   }
+  
   findUser(){
     this.UserService.findUserByUserName(this.username)
     .subscribe(
