@@ -31,31 +31,34 @@ constructor(
 }
 
 export class throwUsage{
-pk : pk;
+id: number;
 uses: number;
 wins: number;
+throwEnum: string;
+user: number;
 
-constructor(pk: pk, uses: number, wins: number) {
-  this.pk = pk
-  this.uses = uses
-  this.wins = wins
+
+
+  constructor(
+    id: number, 
+    uses: number, 
+    wins: number, 
+    throwEnum: string, 
+    user: number
+) {
+    this.id = id
+    this.uses = uses
+    this.wins = wins
+    this.throwEnum = throwEnum
+    this.user = user
+  }
+  
+
+
+
 }
 
 
-
-}
-
-export class pk{
-id: number;
-name: string;
-
-
-constructor(id: number, name: string) {
-  this.id = id
-  this.name = name
-}
-
-}
 
 export class expandedThrow{
 name: string;
