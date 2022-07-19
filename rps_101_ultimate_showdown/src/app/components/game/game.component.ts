@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent {
+export class GameComponent implements OnInit{
 
   user: User = new User(0,"","","","","", []);
   object1 = -1;
@@ -24,24 +24,41 @@ export class GameComponent {
   vsImage = "assets/vs.bmp";
   winFlag: string = "";
   title = "It's the Game!"
+
+  playMatchButtonActive:String = "disabled";
   
   constructor(private gameService : GameService,private UserService: UserService, 
     private AppComponent: AppComponent) {
 
    }
 
+  ngOnInit(): void {
+    console.log("This is the ngOnInit let's hope it works");
+    this.findUser();
+    
+    
+  }
+
    findUser(){
-    this.UserService.findUserByUserName(this.AppComponent.getUsername())
-    .subscribe(
-      data => {
-        console.log(data);
+    // this.UserService.findUserByUserName(this.AppComponent.getUsername())
+    // .subscribe(
+    //   data => {
+    //     //console.log(1);
+    //     this.user = data;
+    //     this.clientMessage.message="";
+    //     //console.log(this.user);
+    //   },
+    //   ()=> this.clientMessage.message= `User not logged in`
+    // ).add(()=>this.playMatchButtonActive = "activated")
+    this.UserService.findUserByUserName(this.AppComponent.getUsername()).subscribe({
+      next:data => {
+        //console.log(1);
         this.user = data;
         this.clientMessage.message="";
-        //console.log(this.user.username + '1');
+        //console.log(this.user);
       },
-      ()=> this.clientMessage.message= `User not logged in`
-
-    )
+      error: () =>  this.clientMessage.message= `User not logged in`
+    }).add(()=>this.playMatchButtonActive = "activated");
   }
 
  randomIntFromInterval(min: number, max: number) { // min and max included 
@@ -49,7 +66,8 @@ export class GameComponent {
   }
 
   playMatch(){
-    this.findUser();
+    
+
     const compObject = GAMEOBJECTS[this.randomIntFromInterval(0,100)];
     const playerObject = GAMEOBJECTS[this.object1];
     //console.log("Player object is " + playerObject.name);
@@ -100,17 +118,25 @@ export class GameComponent {
   // }
     
   }else{
+    this.user.throwUsage[itemExist].uses ++;
     console.log(this.user.throwUsage[itemExist].uses)
-    this.user.throwUsage[itemExist].uses =this.user.throwUsage[itemExist].uses ++;
-    console.log(this.user.throwUsage[itemExist].uses)
+    console.log(this.winFlag);
+    
     if(this.winFlag === "user"){
-      this.user.throwUsage[itemExist].wins = this.user.throwUsage[itemExist].wins ++;
+      console.log(this.user.throwUsage[itemExist].wins)
+      this.user.throwUsage[itemExist].wins++;
+      console.log(this.user.throwUsage[itemExist].wins)
     }
+    console.log(this.user);
+    this.playMatchButtonActive = "disabled";
+    this.UserService.updateUser(this.user).subscribe({
+      next:()=>{}
+    }).add(()=>this.playMatchButtonActive = "activated");
   } 
-  this.UserService.updateUser(this.user);
-  
 
-console.log(this.user)
+  
+  
+//console.log(this.user)
 
 }
 
@@ -118,9 +144,6 @@ console.log(this.user)
 indexOf2dArray(array2d: throwUsage[], itemtofind: any) {
     
   for(let i: number = 0; i < array2d.length; i++){
-
-    console.log("array2d[i].throwEnum:" + array2d[i].throwEnum);
-    console.log("array2d[i].userId:" + array2d[i].user);
     if((array2d[i].throwEnum === itemtofind)&&(array2d[i].user == this.user.id)){
 
       return i;

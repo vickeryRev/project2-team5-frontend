@@ -29,7 +29,7 @@ export class UserService {
   }
 
   updateUser(user:User):Observable<User>{
-    return this.http.post<User>(`${this.userUrl}/add`, this.httpOptions)
+    return this.http.post<User>(`${this.userUrl}/add`,user, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     )
