@@ -59,7 +59,6 @@ user: number;
 }
 
 
-
 export class expandedThrow{
 name: string;
 uses: number;

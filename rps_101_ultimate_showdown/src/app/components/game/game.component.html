@@ -121,7 +121,7 @@
             <br>
 
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary" (click)="playMatch()">Play Match</button>
+                <button type="submit" class="btn btn-primary" (click)="playMatch()" *ngIf="playMatchButtonActive === 'activated'">Play Match</button>
             </div>
 
             <br>
