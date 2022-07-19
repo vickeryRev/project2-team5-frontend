@@ -31,7 +31,7 @@ constructor(
 }
 
 export class throwUsage{
-id: number;
+
 uses: number;
 wins: number;
 throwEnum: string;
@@ -40,13 +40,13 @@ user: number;
 
 
   constructor(
-    id: number, 
+     
     uses: number, 
     wins: number, 
     throwEnum: string, 
     user: number
 ) {
-    this.id = id
+    
     this.uses = uses
     this.wins = wins
     this.throwEnum = throwEnum

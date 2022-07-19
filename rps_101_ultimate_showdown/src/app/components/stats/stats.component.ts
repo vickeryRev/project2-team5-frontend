@@ -28,7 +28,7 @@ export class StatsComponent implements OnInit {
 
  
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
-    this.user.throwUsage.push(new throwUsage(1,10,8,"air",1))
+    //this.user.throwUsage.push(new throwUsage(1,10,8,"air",1))
     
     //this.user.throwThings.push(new throwThings(2,50,20,'paper'));
     //this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
