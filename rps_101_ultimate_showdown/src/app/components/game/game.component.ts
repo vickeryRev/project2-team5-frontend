@@ -78,10 +78,10 @@ export class GameComponent implements OnInit{
 
   this.gameService.getMatch(playerObject.name, compObject.name)
   .subscribe(
-    data => {if(data.winner.toLowerCase()==playerObject.name){
+    data => {if(data.winner.toLowerCase()===playerObject.name){
               this.clientMessage.message = `YOU WIN! ${data.winner} ${data.outcome} ${data.loser}`
               this.winFlag = "user";
-            } else if(data.winner.toLowerCase()==compObject.name){
+            } else if(data.winner.toLowerCase()===compObject.name){
                 this.clientMessage.message = `YOU LOSE! ${data.winner} ${data.outcome} ${data.loser}`
                 this.winFlag = "comp";
               }else{
@@ -89,22 +89,28 @@ export class GameComponent implements OnInit{
                 this.winFlag = "noOne";
               }}, 
     error => this.clientMessage.message = `Something went wrong.  Error ${error}`
-  )
+  ).add(()=> this.wat(playerObject))
+  
+  
+
+}
+
+wat(obj: GameObject){
   //console.log(this.user.throwUsage);
   //console.log(this.user.id);
  // console.log(playerObject.name.toUpperCase());
-  let itemExist = this.indexOf2dArray(this.user.throwUsage , playerObject.name.toUpperCase());
+ let itemExist = this.indexOf2dArray(this.user.throwUsage , obj.name.toUpperCase());
  // console.log("Win flag: " + this.winFlag);
   //console.log("itemExist:" + itemExist);
   console.log(this.winFlag);
   if(itemExist === -1){
     let newObj : throwUsage;
   if(this.winFlag === "user"){
-    newObj = new throwUsage(1,1,playerObject.name.toUpperCase(), this.user.id)
+    newObj = new throwUsage(1,1,obj.name.toUpperCase(), this.user.id)
     this.user.throwUsage.push(newObj);
     }
     else{
-      newObj = new throwUsage( 1, 0, playerObject.name.toUpperCase(),this.user.id);
+      newObj = new throwUsage( 1, 0, obj.name.toUpperCase(),this.user.id);
       this.user.throwUsage.push(newObj);
   }
   this.UserService.updateUser(this.user).subscribe({
@@ -128,11 +134,10 @@ export class GameComponent implements OnInit{
   } 
 
   this.findUser();
+  this.winFlag = "";
   
 //console.log(this.user)
-
 }
-
 
 
 indexOf2dArray(array2d: throwUsage[], itemtofind: string) {
