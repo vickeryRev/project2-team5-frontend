@@ -45,7 +45,7 @@ export class GameComponent implements OnInit{
       next:data => {
         //console.log(1);
         this.user = data;
-        this.clientMessage.message="";
+        //this.clientMessage.message="";
         //console.log(this.user);
       },
       error: () =>  this.clientMessage.message= `User not logged in`

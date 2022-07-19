@@ -19,12 +19,13 @@ export class StatsComponent implements OnInit {
   gamesPlayed: number = 0;
   gamesWon: number = 0;
   winRatio: number = 0;
+  
   user: User = new User(0,"","","","","", [])
-  data: expandedThrow[] = [];
+  newArray: expandedThrow[] = [];
   
   //throwThings1 = new throwThings(2,50,20,'paper');
   //throwThings2 = new throwThings(3,100,80,'scissors');
-  ClientMessage: ClientMessage = new ClientMessage("");
+  clientMessage: ClientMessage = new ClientMessage("");
 
  
   constructor(private UserService: UserService, private AppComponent: AppComponent) { 
@@ -34,14 +35,27 @@ export class StatsComponent implements OnInit {
     //this.user.throwThings.push(new throwThings(3,100,20,'scissors'));
     //this.fillOutData();
     this.setusername();
+    this.findUser();
+    
+    
+    
+  }
+
+  ngOnInit(): void {
+    //console.log("init")
+    
+  }
+
+  
+  defeat(){
+    
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
     this.fillOutData();
-    console.log(this.username)
-  }
-
-  ngOnInit(): void {
+    //console.log(this.newArray)
+    //console.log(this.username)
+    
   }
 
   sortThrowThings(){
@@ -76,7 +90,7 @@ export class StatsComponent implements OnInit {
       let ratio = this.calcWinRatio(this.user.throwUsage[i].uses , this.user.throwUsage[i].wins)
       let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwUsage[i].throwEnum.toLowerCase());
       let temp = new expandedThrow(this.user.throwUsage[i].throwEnum , this.user.throwUsage[i].uses , this.user.throwUsage[i].wins, ratio, GAMEOBJECTS[index].url )
-      this.data.push(temp);
+      this.newArray.push(temp);
     }
   }
 
@@ -96,14 +110,18 @@ export class StatsComponent implements OnInit {
   }
 
   findUser(){
-    this.UserService.findUserByUserName(this.username)
-    .subscribe(
-      data => {
+    
+    this.UserService.findUserByUserName(this.AppComponent.getUsername()).subscribe({
+      next:data => {
+        //console.log(1);
+        
+        
         this.user = data;
-        this.ClientMessage.message="";
+        this.clientMessage.message="";
+        
+        //console.log(this.user);
       },
-      ()=> this.ClientMessage.message= `User : ${this.username} can not be found at this time.`
-
-    )
+      error: () =>  this.clientMessage.message= `User not logged in`
+    }).add((()=>this.defeat()))
   }
 }
