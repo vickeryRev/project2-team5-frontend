@@ -46,7 +46,7 @@ export class LoginComponent {
         this.AppComponent.isLoggedIn = true;
         this.AppComponent.updateUserData(response.body.username)
         
-       console.log("hi")
+       
       },
       //failed login
       () => {

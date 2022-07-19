@@ -10,6 +10,7 @@ export class AppComponent {
   public isLoggedIn: boolean = false;
   public isLanded: boolean = true;
   public username: string = '';
+  
 
   updateUserData(username: string): void {
     this.username = username;
