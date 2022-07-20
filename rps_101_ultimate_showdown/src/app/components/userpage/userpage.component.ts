@@ -1,4 +1,6 @@
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
+import { setupTestingRouter } from '@angular/router/testing';
 
 @Component({
   selector: 'app-userpage',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(AppComponent:AppComponent) { }
 
   ngOnInit(): void {
   }
 
+  signOut(): void {
+    window.location.reload();
+  }
 }
+
