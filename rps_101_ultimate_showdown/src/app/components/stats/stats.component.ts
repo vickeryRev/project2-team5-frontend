@@ -48,7 +48,9 @@ export class StatsComponent implements OnInit {
 
   
   defeat(){
-    
+    console.log("gothere1")
+    this.clean();
+    console.log("gothere2")
     this.sortThrowThings();
     this.calcOveralls();
     this.winRatio = this.calcWinRatio(this.gamesPlayed, this.gamesWon);  
@@ -57,8 +59,24 @@ export class StatsComponent implements OnInit {
     //console.log(this.username)
     
   }
-
+  clean(){
+    for( let i :number = 0; i < this.user.throwUsage.length-1; i ++){
+      console.log(this.user.throwUsage[i].throwEnum  + " : " +this.user.throwUsage[i+1].throwEnum)
+      
+      if(this.user.throwUsage[i].throwEnum === this.user.throwUsage[i+1].throwEnum){
+        this.user.throwUsage[i].wins += this.user.throwUsage[i+1].wins;
+        this.user.throwUsage[i].uses += this.user.throwUsage[i+1].uses;
+        this.user.throwUsage.splice(i+1,1)
+        
+        
+        console.log("if")
+      
+    }
+      console.log(this.user.throwUsage);
+    }
+  }
   sortThrowThings(){
+    
     if(this.user.throwUsage.length != 0){
       this.user.throwUsage.sort((a,b) => ((a.wins / a.uses) > (b.wins/b.uses)) ? 1 : -1);
       this.user.throwUsage.reverse();
@@ -87,10 +105,19 @@ export class StatsComponent implements OnInit {
   fillOutData(){
     for( let i :number = 0; i < this.user.throwUsage.length; i ++){
      
+      
       let ratio = this.calcWinRatio(this.user.throwUsage[i].uses , this.user.throwUsage[i].wins)
       let index: number =  this.indexOf2dArray(GAMEOBJECTS, this.user.throwUsage[i].throwEnum.toLowerCase());
+      
+      //console.log(this.user.throwUsage[i].throwEnum  + " : " +this.user.throwUsage[i+1].throwEnum)
+      
+      
+      
       let temp = new expandedThrow(this.user.throwUsage[i].throwEnum , this.user.throwUsage[i].uses , this.user.throwUsage[i].wins, ratio, GAMEOBJECTS[index].url )
       this.newArray.push(temp);
+      //console.log("else")
+      
+      
     }
   }
 
