@@ -20,14 +20,15 @@
         </div>
 
         
-        <div class="card-body" *ngFor="let u of newArray">
-            <div class="card-tile"> {{u.name}} </div>
+        <div class="card shadow-lg" *ngFor="let u of newArray">
+            <img src= {{u.pic}} alt= "{{u.name}}+image">
+            <h4 class="card-title"> {{u.name}} </h4>
             <p>Games Played : {{u.uses}}</p>
             <p>Wins : {{u.wins}}</p>
             
             
-                <p>Ratio: {{u.ratio}}% </p>
-            <p><img src= {{u.pic}} alt= "{{u.name}}+image"></p>
+            <p>Ratio: {{u.ratio}}% </p>
+            
             
         </div>
     
