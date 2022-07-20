@@ -160,4 +160,7 @@ indexOf2dArray(array2d: throwUsage[], itemtofind: string) {
 
 
 }
+signOut(): void {
+  window.location.reload();
+}
 }
