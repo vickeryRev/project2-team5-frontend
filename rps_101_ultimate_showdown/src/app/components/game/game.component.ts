@@ -100,9 +100,10 @@ wat(obj: GameObject){
   //console.log(this.user.id);
  // console.log(playerObject.name.toUpperCase());
  let itemExist = this.indexOf2dArray(this.user.throwUsage , obj.name.toUpperCase());
- // console.log("Win flag: " + this.winFlag);
-  //console.log("itemExist:" + itemExist);
+  console.log("Win flag: " + this.winFlag);
+  console.log("itemExist:" + itemExist);
   console.log(this.winFlag);
+  this.playMatchButtonActive = "disabled";
   if(itemExist === -1){
     let newObj : throwUsage;
   if(this.winFlag === "user"){
@@ -113,8 +114,11 @@ wat(obj: GameObject){
       newObj = new throwUsage( 1, 0, obj.name.toUpperCase(),this.user.id);
       this.user.throwUsage.push(newObj);
   }
+  this.playMatchButtonActive = "disabled";
   this.UserService.updateUser(this.user).subscribe({
-    next:()=>{}
+    next:data => {
+      console.log(data)
+    }
   }).add(()=>this.playMatchButtonActive = "activated");
   }else{
     this.user.throwUsage[itemExist].uses ++;
@@ -129,26 +133,29 @@ wat(obj: GameObject){
     //console.log(this.user);
     this.playMatchButtonActive = "disabled";
     this.UserService.updateUser(this.user).subscribe({
-      next:()=>{}
+      next:data => {
+        console.log(data)
+      }
     }).add(()=>this.playMatchButtonActive = "activated");
   } 
 
   this.findUser();
   this.winFlag = "";
   
-//console.log(this.user)
+console.log(this.user.throwUsage)
 }
 
 
 indexOf2dArray(array2d: throwUsage[], itemtofind: string) {
     
   for(let i: number = 0; i < array2d.length; i++){
-    if((array2d[i].user == this.user.id)&&(array2d[i].throwEnum === itemtofind.toUpperCase())){
-
+    if((array2d[i].throwEnum === itemtofind.toUpperCase())&&(array2d[i].user === this.user.id)){
+      console.log(array2d[i].throwEnum)
       return i;
       
     }
   }
+
   return -1;
 
 
