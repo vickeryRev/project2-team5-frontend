@@ -34,7 +34,7 @@
                 <button class="btn-primary btn" type="submit" (click)="registerUser()">Register</button>
             </div>
             <div class="alert-secondary alert" *ngIf="clientMessage.message.length > 0" role="alert">
-                {{clientMessage}}
+                {{clientMessage.message}}
             </div>
         </form>
     </div>

@@ -143,7 +143,7 @@ wat(obj: GameObject){
 indexOf2dArray(array2d: throwUsage[], itemtofind: string) {
     
   for(let i: number = 0; i < array2d.length; i++){
-    if((array2d[i].throwEnum === itemtofind.toUpperCase())&&(array2d[i].user == this.user.id)){
+    if((array2d[i].user == this.user.id)&&(array2d[i].throwEnum === itemtofind.toUpperCase())){
 
       return i;
       

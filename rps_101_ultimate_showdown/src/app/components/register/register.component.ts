@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     //this.user.throwThings.push(this.throwThings);
     this.UserService.registerUser(this.user)
     .subscribe(
-      data => this.clientMessage.message = `Registration successful for ${data.firstName}`,
+      data => this.clientMessage.message = `Registration successful for ${data.username}, please click already have an account and log in.`,
       error => this.clientMessage.message = `well, something went wroung here some data ${error}`
     )
   }
