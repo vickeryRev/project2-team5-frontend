@@ -5,8 +5,13 @@
 
         <div class="card-body">
             
-            <h4 class="text-center">Pick Your Object!</h4>
+            
+
+            
             <form>
+                <div class="card shadow-lg">
+
+                <h4 class="text-center">Pick Your Object!</h4>
             <div class="object1">
                 <label for="inputObject1" class="form-label"></label>
                 <select [(ngModel)]="object1" name="objectOne" id="inputObject1" class="form-select">
@@ -148,7 +153,7 @@
                 </div>
  
 
-                
+            </div>
             </div>
         </form>
 
@@ -166,8 +171,8 @@
 
 <div class="userpagebtn text-center">
 
-    <button class="btn-warning btn"><a routerLink="/user" >Back To User Page</a></button>
-    <button class="btn-warning btn" (click)="signOut()">Logout</button>
+    <a routerLink="/user" ><button class="btn btn-success">Back To User Page</button></a>
+    <button class="btn btn-success" (click)="signOut()">Logout</button>
 
 
     </div>
